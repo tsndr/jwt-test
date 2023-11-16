@@ -9,9 +9,12 @@ export default {
 		const token = await jwt.sign({ sub: 'test', more: '@test' }, secret)
 		console.log({ token })
 
+		const decoded = jwt.decode(token)
+		console.log({ decoded })
+
 		const verified = await jwt.verify(token, secret)
 		console.log({ verified })
 
-		return Response.json({ token, verified })
+		return Response.json({ token, decoded, verified })
 	}
 }
